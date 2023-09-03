@@ -1,6 +1,7 @@
 // Smoke test to check the server is healthy.
 
-import server from "./common/testServer";
+import { jest } from "@jest/globals";
+import server from "./common/testServer.js";
 import { Response } from "supertest";
 
 describe("Smoke test", () => {

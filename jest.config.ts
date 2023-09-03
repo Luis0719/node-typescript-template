@@ -14,9 +14,25 @@ const config: JestConfigWithTsJest = {
   modulePaths: ["<rootDir>"],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: "<rootDir>/",
-  }),
+  // moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+  //   prefix: "<rootDir>/",
+  // }),
+  moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths),
+    "^(\\.{1,2}/.*)\\.js$": "$1",
+  },
+  extensionsToTreatAsEsm: [".ts"],
+
+  // A map from regular expressions to paths to transformers
+  transform: {
+    "^.+\\.(mt|t|cj|j)s$": [
+      "ts-jest",
+      {
+        useESM: true,
+      },
+    ],
+  },
+  // transform: {},
 
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
@@ -177,9 +193,6 @@ const config: JestConfigWithTsJest = {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
-
-  // A map from regular expressions to paths to transformers
-  transform: {},
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

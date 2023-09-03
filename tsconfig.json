@@ -2,15 +2,19 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
     "noImplicitAny": true,
-    "sourceMap": true,
     "outDir": "dist",
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "removeComments": true,
+    "sourceMap": false,
+    "types": ["node", "jest"],
+    "strict": false,
+    "esModuleInterop": true,
     "paths": {
-      "@app/*": ["src/*"],
-      "@test/*": ["test/*"]
+      "@app/*": ["./src/*"],
+      "@test/*": ["./test/*"]
     }
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*", "./**/*.json"],
+  "exclude": ["node_modules", "tsconfig.json", "jest.config.ts"]
 }

@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 
 function Register(app: Application) {
+  app.use(helmet());
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
@@ -11,7 +12,6 @@ function Register(app: Application) {
   app.use(cookieParser());
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.use(cors());
-  app.use(helmet());
 }
 
 export default { Register };
