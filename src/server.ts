@@ -1,20 +1,12 @@
 import express, { Application } from "express";
-import cookieParser from "cookie-parser";
-import helmet from "helmet";
-import cors from "cors";
+import middlewares from "./middlewares";
 import routes from "./app/routes";
 
 const app: Application = express();
 const port = 8080; // default port to listen
 
 function BuildApp(): Application {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  app.use(cookieParser());
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  app.use(cors());
-  app.use(helmet());
-
+  middlewares.Register(app);
   routes.SetupRoutes(app);
 
   // Export the app so it can be reused by tests.
