@@ -15,8 +15,11 @@ import { compilerOptions } from "./tsconfig.json";
 
 const config: JestConfigWithTsJest = {
   preset: "ts-jest",
+  // A list of paths to directories that Jest should use to search for files in
   roots: ["<rootDir>"],
   modulePaths: [compilerOptions.baseUrl], // <-- This will be set to 'baseUrl' value
+
+  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: pathsToModuleNameMapper(
     compilerOptions.paths /*, { prefix: '<rootDir>/' } */
   ),
@@ -76,10 +79,10 @@ const config: JestConfigWithTsJest = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
+  globalSetup: "./test/init.ts",
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  // globalTeardown: undefined,
+  globalTeardown: "./test/teardown.ts",
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -103,9 +106,6 @@ const config: JestConfigWithTsJest = {
   //   "json",
   //   "node"
   // ],
-
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -139,11 +139,6 @@ const config: JestConfigWithTsJest = {
 
   // The root directory that Jest should scan for tests and modules within
   // rootDir: undefined,
-
-  // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
