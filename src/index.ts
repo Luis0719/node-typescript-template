@@ -9,6 +9,6 @@ app.get("/", (req: Request, res: Response) => {
 
 // start the Express server
 app.listen(port, () => {
-  // tslint:disable-next-line:no-console
+  // eslint-disable-next-line no-console
   console.log(`server started at http://localhost:${port}`);
 });
