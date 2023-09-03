@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import cors from "cors";
 import routes from "./app/routes";
 
 const app: Application = express();
@@ -10,6 +11,8 @@ function BuildApp(): Application {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.use(cookieParser());
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  app.use(cors());
   app.use(helmet());
 
   routes.SetupRoutes(app);
