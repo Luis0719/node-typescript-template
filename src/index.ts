@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 const port = 8080; // default port to listen
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cookieParser());
 
 // define a route handler for the default home page
