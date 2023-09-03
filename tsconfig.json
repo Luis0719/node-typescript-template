@@ -10,7 +10,11 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "baseUrl": "."
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@App/*": ["src/*"]
+    }
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"]
