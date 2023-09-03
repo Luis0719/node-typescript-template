@@ -1,6 +1,7 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import routes from "./app/routes";
 
 const app: Application = express();
 const port = 8080; // default port to listen
@@ -11,10 +12,7 @@ function BuildApp(): Application {
 
   app.use(helmet());
 
-  // define a route handler for the default home page
-  app.get("/", (req: Request, res: Response) => {
-    res.send("Hello world!");
-  });
+  routes.SetupRoutes(app);
 
   // Export the app so it can be reused by tests.
   return app;
