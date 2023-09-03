@@ -1,6 +1,7 @@
-import TestServer from "./common/testServer";
+import TestServer from "./common/testServer.js";
 import { Server } from "http";
 
+// The Http server used by the app.
 let httpServer: Server;
 const port = 8080;
 

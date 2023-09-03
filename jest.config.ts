@@ -6,23 +6,26 @@ import type { JestConfigWithTsJest } from "ts-jest";
 import { pathsToModuleNameMapper } from "ts-jest";
 import { compilerOptions } from "./tsconfig.json";
 
-// import type {Config} from 'jest';
-// /** @type {import('ts-jest').JestConfigWithTsJest} */
-// module.exports = {
-//   preset: "ts-jest",
-//   testEnvironment: "node",
-// };
-
 const config: JestConfigWithTsJest = {
   preset: "ts-jest",
   // A list of paths to directories that Jest should use to search for files in
   roots: ["<rootDir>"],
-  modulePaths: [compilerOptions.baseUrl], // <-- This will be set to 'baseUrl' value
+  // modulePaths: [compilerOptions.baseUrl], // <-- This will be set to 'baseUrl' value
+  modulePaths: ["<rootDir>"],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: pathsToModuleNameMapper(
-    compilerOptions.paths /*, { prefix: '<rootDir>/' } */
-  ),
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: "<rootDir>/",
+  }),
+
+  // Automatically clear mock calls, instances, contexts and results before every test
+  clearMocks: true,
+
+  // Indicates which provider should be used to instrument code for coverage
+  coverageProvider: "v8",
+
+  // A list of paths to modules that run some code to configure or set up the testing framework before each test
+  setupFilesAfterEnv: ["./test/jest.setup.ts"],
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -32,9 +35,6 @@ const config: JestConfigWithTsJest = {
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "/private/var/folders/b8/68wn5z9s31l2q697sbgv_ypw0000gn/T/jest_dx",
-
-  // Automatically clear mock calls, instances, contexts and results before every test
-  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -49,9 +49,6 @@ const config: JestConfigWithTsJest = {
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
   // ],
-
-  // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -146,9 +143,6 @@ const config: JestConfigWithTsJest = {
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
 
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["./test/jest.setup.ts"],
-
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
 
@@ -185,7 +179,7 @@ const config: JestConfigWithTsJest = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {},
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

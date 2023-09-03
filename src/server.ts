@@ -1,6 +1,6 @@
 import express, { Application } from "express";
-import middlewares from "./middlewares";
-import routes from "./app/routes";
+import middlewares from "./middlewares.js";
+import routes from "./app/routes.js";
 
 const app: Application = express();
 const port = 8080; // default port to listen

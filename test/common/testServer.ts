@@ -1,4 +1,4 @@
-import server from "@app/server";
+import server from "@app/server.js";
 import { Application } from "express";
 import supertest, { SuperTest } from "supertest";
 
