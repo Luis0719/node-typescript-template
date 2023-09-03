@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
+import cookieParser from "cookie-parser";
 const app = express();
 const port = 8080; // default port to listen
+
+app.use(cookieParser());
 
 // define a route handler for the default home page
 app.get("/", (req: Request, res: Response) => {
